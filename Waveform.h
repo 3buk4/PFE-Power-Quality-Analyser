@@ -17,4 +17,7 @@ typedef struct {
     double thd_percent; //Column 8: thd_Percent (Total Harmonic Distortion)
 } Waveformsample;
 
+double calculate_rms(Waveformsample *data_array, int count, char phase_char);
+double calculate_peak(Waveformsample *data_array, int count, char phase_char);
+
 #endif //PFE_POWER_QUALITY_ANALYSER_WAVEFORM_H
