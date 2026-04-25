@@ -5,7 +5,7 @@
 
 int load_csv_data(const char *filename, Waveformsample *data_array, int max_rows) {
     FILE *file;  // file pointer
-    file = fopen("Power_quality_log.csv", "r"); //Attemping to open the csv in read mode
+    file = fopen(filename, "r"); //Attempting to open the csv in read mode
 
     if (file == NULL) {  //NULL CHECK
         printf("Error: could not open CSV file\n "); //Message if file was not found
