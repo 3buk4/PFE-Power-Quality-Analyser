@@ -21,11 +21,12 @@ double calculate_rms(Waveformsample *data_array, int count, char phase_char) {
         else if (phase_char == 'C')  val = data_array[i].phase_C_voltage;
 
         sum_sq += val * val;
-
-        double rms = sqrt(sum_sq / count);
-
-        return rms;
     }
+
+        return sqrt(sum_sq / count);
+
+
+
 }
 double calculate_peak(Waveformsample *data_array, int count, char phase_char) {
        if (count <= 0 || data_array == NULL) return 0;//Empty file?, immediately exit

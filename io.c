@@ -12,7 +12,7 @@ int load_csv_data(const char *filename, Waveformsample *data_array, int max_rows
         return 1;  //Returns 1 if unsuccessful.
     }
 
-    char line[512];
+    char line[1024];
     int count = 0; //Track of how many rows successfully stored
 
     fgets(line, sizeof(line), file);// Skips Header
@@ -57,5 +57,5 @@ int load_csv_data(const char *filename, Waveformsample *data_array, int max_rows
     }
 
     fclose(file);//close file
-    return 0;
+    return count;
 }
