@@ -19,5 +19,5 @@ typedef struct {
 
 double calculate_rms(Waveformsample *data_array, int count, char phase_char);
 double calculate_peak(Waveformsample *data_array, int count, char phase_char);
-
+int check_Tolerance(double rms);
 #endif //PFE_POWER_QUALITY_ANALYSER_WAVEFORM_H

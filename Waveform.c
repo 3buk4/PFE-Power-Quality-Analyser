@@ -44,5 +44,9 @@ double calculate_peak(Waveformsample *data_array, int count, char phase_char) {
     return max_peak;
 
 }
+int check_Tolerance(double rms) {
+    if (rms >= 207.0 && rms <= 253.0) return 1;
+    return 0;
+}
 
 

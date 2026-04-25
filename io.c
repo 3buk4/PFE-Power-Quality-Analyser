@@ -1,4 +1,5 @@
 #include "io.h"
+#include "Waveform.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -57,5 +58,49 @@ int load_csv_data(const char *filename, Waveformsample *data_array, int max_rows
     }
 
     fclose(file);//close file
-    return count;
+    return count;//returns number of rows read
+}
+
+
+int write_results(const char *filename, Waveformsample *data_array, int count) {
+
+    FILE *file;
+    file = fopen(filename, "w");
+
+    if (file == NULL) {
+        printf("Error: could not  filwrite results file\n ");
+        return 1;
+    }
+    // Calculate the metrics
+    double rms_a = calculate_rms(data_array, count, 'A');
+    double rms_b = calculate_rms(data_array, count, 'B');
+    double rms_c = calculate_rms(data_array, count, 'C');
+
+    double peak_a = calculate_peak(data_array, count, 'A');
+    double peak_b = calculate_peak(data_array, count, 'B');
+    double peak_c = calculate_peak(data_array, count, 'C');
+
+    //write the report
+    //RMS VOLTAGE
+    fprintf(file, "POWER QUALITY REPORT\n" );
+
+    fprintf(file, "Total Samples Processed: %d\n\n", count);
+
+    fprintf(file,"RMS VOLTAGE\n");
+    fprintf(file, "phase A: %.2f V    %s\n", rms_a, check_Tolerance(rms_a) ? "COMPLAINT" : "NON COMPLAINT");
+    fprintf(file, "phase B: %.2f V    %s\n", rms_b, check_Tolerance(rms_b) ? "COMPLAINT" : "NON COMPLAINT");
+    fprintf(file, "phase C: %.2f V    %s\n", rms_c, check_Tolerance(rms_c) ? "COMPLAINT" : "NON COMPLAINT");
+    fprintf(file, "(EN 50160 tolerance band: 207v - 253v)\n\n");
+
+    //PEAK TO PEAK VOLTAGE
+    fprintf(file, "PEAK TO PEAK VOLTAGE\n");
+    fprintf(file, "phase A: %.2f V\n", peak_a);
+    fprintf(file, "phase B: %.2f V\n", peak_b);
+    fprintf(file, "phase C: %.2f V\n", peak_c);
+
+    fclose(file);
+    printf("Results Written to %s\n", filename);
+    return 0;
+
+
 }
