@@ -1,7 +1,7 @@
-cmake_minimum_required(VERSION 4.2)
+cmake_minimum_required(VERSION 3.10)
 project(PFE_Power_Quality_Analyser)
 
-set(CMAKE_CXX_STANDARD 99)
+set(CMAKE_C_STANDARD 99)
 
 add_executable(PFE_Power_Quality_Analyser main.c
         Waveform.c

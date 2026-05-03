@@ -4,24 +4,26 @@
 #include "io.h"
 
 int main(int argc, char *argv[]) {
+
 if (argc < 2) {
-    printf("Usage: %s filename\n", argv[0]);
+    printf("Usage: %s <power_quality_log.csv>\n", argv[0]);
     return 1;
 }
-    const char *filename = argv[1]; // Pointer to the filename from command line
+    const char *filename = argv[1]; //inputs csv path from command line
+    const char *output_file = "results.txt"; //output report to be written here
 
-    int num_samples = 2000; // Buffer size
+    int num_samples = 2000; // Buffer size(larger than data set to avoid overflow)
 
     Waveformsample *data = (Waveformsample *) malloc(num_samples * sizeof(Waveformsample));
     //Allocating thr memory
 
-    if (data == NULL) {//Null check
+    if (data == NULL) {//Null check for memory allocation
         printf("Error: memory allocation failed\n");
         return 1;
     }
 
     int load = load_csv_data(filename, data, num_samples);//Loading the CSV file(I/O)
-    if (load != 0) {
+    if (load <= 0) {
         printf("Error: could not load\n");
         free(data);
         return 1;
@@ -48,8 +50,10 @@ if (argc < 2) {
     printf("Total Samples Processed: %d\n", load);
 
 
-   free(data);
 
+write_results(output_file, data, load);//writes full report to results.txt
+
+   free(data);
     return 0;
 }
 
