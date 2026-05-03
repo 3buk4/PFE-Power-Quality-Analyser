@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.10)
+cmake_minimum_required(VERSION 3.1)
 project(PFE_Power_Quality_Analyser)
 
 set(CMAKE_C_STANDARD 99)

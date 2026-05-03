@@ -51,7 +51,7 @@ if (argc < 2) {
 
 
 
-write_results(output_file, data, load);//writes full report to results.txt
+write_results(output_file, data, load);//writes full report to the file results.txt
 
    free(data);
     return 0;

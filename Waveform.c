@@ -29,7 +29,7 @@ double calculate_rms(Waveformsample *data_array, int count, char phase_char) {
 }
 
 double calculate_peak(Waveformsample *data_array, int count, char phase_char) {
-       if (count <= 0 || data_array == NULL) return 0;//Empty file?, immediately exit
+       if (count <= 0 || data_array == NULL) return 0;//NULL/Empty file?, immediately exit
 
         double max_val = -1e9;
     double min_val = 1e9;

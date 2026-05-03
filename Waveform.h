@@ -14,7 +14,7 @@ typedef struct {
     double line_current; //Column 5: Line Current
     double frequency; //Column 6: Frequency
     double power_factor; //Column 7: Power Factor
-    double thd_percent; //Column 8: thd_Percent (Total Harmonic Distortion)
+    double thd_percent; //Column 8: thd_Percent (Total Harmonic Distortion).
 
 } Waveformsample;
 

@@ -51,7 +51,7 @@ int load_csv_data(const char *filename, Waveformsample *data_array, int max_rows
 
         token = strtok(NULL, ",");
         if (token != NULL)
-            data_array[count].thd_percent = atof(token); //Reads the eight number
+            data_array[count].thd_percent = atof(token); //Reads the eight number.
 
         count++;//After filling one struct with 8 columns, move to the nxt index in our array
 
